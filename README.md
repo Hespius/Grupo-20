@@ -1,5 +1,5 @@
-# Grupo-2.6
-## Agricultura familiar
+# Grupo 2.6 - Agricultura familiar
+
 1. Caique de Jesus Santos
 1. Julio Cesar de Barros
 1. Vítor Guilherme Antunes
