@@ -1,3 +1,9 @@
+# Sobre o Projeto
+
+# Como instalar
+
+# Como utilizar
+
 # Grupo 20 - Agricultura familiar
 
 1. Caique de Jesus Santos
@@ -6,3 +12,4 @@
 1. Vinicius Henrique Espeçoto
 1. Giovanni Almeida de Sousa
 1. Fernando Schroder Rodirgues
+
