@@ -1,11 +1,6 @@
 # Sobre o Projeto
 
-O [Project_name] é um software com a missão de possibilitar uma interação mais direta entre o pequeno e médio agricultor com o cliente final. Funcionando como um cadastro na plataforma onde teremos os dados de cadastro que serão preenchidos pelo agricultor (preço, produto, safras, quantidade e preços) e os clientes farão as demandas pelo preço.
-
-
-Sugestão de nome 
-
-* SMA Handshake
+O SMA Handshake é um software com a missão de possibilitar uma interação mais direta entre o pequeno e médio agricultor com o cliente final. Funcionando como um cadastro na plataforma onde teremos os dados de cadastro que serão preenchidos pelo agricultor (preço, produto, safras, quantidade e preços) e os clientes farão as demandas pelo preço.
 
 
 # Como instalar
