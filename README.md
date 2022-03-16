@@ -1,5 +1,7 @@
 # Sobre o Projeto
 
+[![GitHub license](https://img.shields.io/github/license/Hespius/Grupo-20)](https://github.com/Hespius/Grupo-20/blob/main/LICENSE)
+
 O SMA Handshake é um software com a missão de possibilitar uma interação mais direta entre o pequeno e médio agricultor com o cliente final. Funcionando como um cadastro na plataforma onde teremos os dados de cadastro que serão preenchidos pelo agricultor (preço, produto, safras, quantidade e preços) e os clientes farão as demandas pelo preço.
 
 
