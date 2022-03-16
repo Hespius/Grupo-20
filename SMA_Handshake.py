@@ -1,6 +1,7 @@
-import pandas
 import os
 import time
+
+import pandas
 
 class Cliente:
     #funcao de cadastro do cliente 
@@ -12,3 +13,4 @@ class Produto:
  #FUNCAO ESTOQUE
  #FUNCAO ARMAZENAR SAFRA 
  #FUNCAO DESPACHAR PEDIDO
+ 
