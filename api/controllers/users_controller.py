@@ -1,36 +1,32 @@
 from fastapi import APIRouter
-from models.users import Consumidor, Produtor
+from models.users import Usuario
 
 router = APIRouter()
 
-consumidores = []
-produtores = []
-
+#TODO: permitir null vindo do json ao invés de vazio
 @router.post("/cadastrar/consumidor")
-async def add_consumidor(item: Consumidor):
+async def add_consumidor(item: Usuario):
 
-    if len([consumidor for consumidor in consumidores if consumidor.email == item.email]) > 0:
-        return { "sucesso": False, "mensagem": "email já cadastrado"}
-
-    consumidores.append(item)
-
-    return { "sucesso": True, "mensagem": ""}
+    await  item.save()
+    return item
 
 @router.get("/consumidores")
 async def get_consumidores():
-    return consumidores
+    return await Usuario.objects.filter(produtor = False).all()
 
 
 @router.post("/cadastrar/produtor")
-async def add_produtor(item: Produtor):
+async def add_produtor(item: Usuario):
 
-    if len([produtor for produtor in produtores if produtor.email == item.email]) > 0:
-        return { "sucesso": False, "mensagem": "email já cadastrado"}
+    item.produtor = True
 
-    produtores.append(item)
-
-    return { "sucesso": True, "mensagem": ""}
+    await  item.save()
+    return item
 
 @router.get("/produtores")
 async def get_produtores():
-    return produtores
+    return await Usuario.objects.filter(produtor = True).all()
+
+# @router.post('login')
+# async def login(login: LoginForm):
+    
