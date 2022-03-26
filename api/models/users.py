@@ -1,7 +1,9 @@
 from email.policy import default
+from re import S
 import ormar
 
 from database import database, metadata
+from pydantic import BaseModel
 
 class Usuario(ormar.Model):
     class Meta:
@@ -24,25 +26,40 @@ class Usuario(ormar.Model):
     produtor: bool = ormar.Boolean(default=False)
     senha: str = ormar.String(max_length=50)
 
-# class User(BaseModel):
-#     id: int
-#     nome = Column(String)
-#     telefone = Column(String)
-#     email = Column(String)
-#     logradouro = Column(String)
-#     numero: int
-#     complemento = Column(String)
-#     cep = Column(String)
-#     cidade = Column(String)
-#     estado = Column(String)
-#     senha = Column(String) 
+    def __str__(self):
+        return 'nome: ' + self.nome + '\nemail: ' + self.email
 
-# class Consumidor(User):
-#     cpf= ''
 
-# class Produtor(User):
-#     cnpj= ''
+class LoginForm(BaseModel):
+    email:str 
+    senha:str
 
-# class LoginForm():
-#     email = Column(String)
-#     senha = Column(String)
+class Response():
+    sucesso: bool
+    mensagem: str
+
+class ResponseLogin(Response):
+    nome: str 
+    email: str
+    cidade: str
+    estado: str
+    cpf : str
+    cnpj: str
+    produtor: bool
+
+    def __init__(self, sucesso: bool, mensagem: str):
+        self.sucesso = sucesso
+        self.mensagem = mensagem
+
+    def __init__(self, usuario: Usuario):
+
+        self.sucesso = True
+        self.mensagem = ''
+
+        self.nome = usuario.nome
+        self.email = usuario.email
+        self.cidade = usuario.cidade
+        self.estado = usuario.estado
+        self.cpf = usuario.cpf
+        self.cnpj = usuario.cnpj
+        self.produtor = usuario.produtor
