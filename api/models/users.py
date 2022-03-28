@@ -1,9 +1,10 @@
-from email.policy import default
-from re import S
+# from email.policy import default
+# from re import S
 import ormar
 
 from database import database, metadata
 from pydantic import BaseModel
+
 
 class Usuario(ormar.Model):
     class Meta:
@@ -31,19 +32,21 @@ class Usuario(ormar.Model):
 
 
 class LoginForm(BaseModel):
-    email:str 
-    senha:str
+    email: str
+    senha: str
+
 
 class Response():
     sucesso: bool
     mensagem: str
 
+
 class ResponseLogin(Response):
-    nome: str 
+    nome: str
     email: str
     cidade: str
     estado: str
-    cpf : str
+    cpf: str
     cnpj: str
     produtor: bool
 
@@ -51,15 +54,15 @@ class ResponseLogin(Response):
         self.sucesso = sucesso
         self.mensagem = mensagem
 
-    def __init__(self, usuario: Usuario):
+    # def __init__(self, usuario: Usuario):
 
-        self.sucesso = True
-        self.mensagem = ''
+    #     self.sucesso = True
+    #     self.mensagem = ''
 
-        self.nome = usuario.nome
-        self.email = usuario.email
-        self.cidade = usuario.cidade
-        self.estado = usuario.estado
-        self.cpf = usuario.cpf
-        self.cnpj = usuario.cnpj
-        self.produtor = usuario.produtor
+    #     self.nome = usuario.nome
+    #     self.email = usuario.email
+    #     self.cidade = usuario.cidade
+    #     self.estado = usuario.estado
+    #     self.cpf = usuario.cpf
+    #     self.cnpj = usuario.cnpj
+    #     self.produtor = usuario.produtor
