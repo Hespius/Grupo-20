@@ -30,7 +30,7 @@ Em seguida instalar todas as dependencias do projeto:
 Para executar o backend execute o seguinte comando:
 
 <pre><code>cd api
-uvicorn main.app -reload
+uvicorn main:app --reload
 </code></pre>
 
 # Grupo 20 - Agricultura familiar
