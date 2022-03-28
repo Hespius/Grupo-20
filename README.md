@@ -1,13 +1,37 @@
 # Sobre o Projeto
 
-[![GitHub license](https://img.shields.io/github/license/Hespius/Grupo-20)](https://github.com/Hespius/Grupo-20/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-)](https://github.com/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-/blob/main/LICENSE)
+[![Python application](https://github.com/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-/actions/workflows/python-app.yml/badge.svg)](https://github.com/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-/actions/workflows/python-app.yml)
 
 O SMA Handshake é um software com a missão de possibilitar uma interação mais direta entre o pequeno e médio agricultor com o cliente final. Funcionando como um cadastro na plataforma onde teremos os dados de cadastro que serão preenchidos pelo agricultor (preço, produto, safras, quantidade e preços) e os clientes farão as demandas pelo preço.
-
+<br/><br/>
 
 # Como instalar
 
-# Como utilizar
+Tecnologias utilizada no projeto:
+
+
+<img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"/><img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
+<img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"/>
+<img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"/>
+<img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
+<img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg"/>
+<br/><br/>
+
+## Configurando backend
+
+Instalar <a href="https://www.python.org/">Python</a> e clonar o repositório.
+
+Em seguida instalar todas as dependencias do projeto:
+
+<pre><code>pip install -r .\api\api_requirements.txt
+</code></pre>
+
+Para executar o backend execute o seguinte comando:
+
+<pre><code>cd api
+uvicorn main.app -reload
+</code></pre>
 
 # Grupo 20 - Agricultura familiar
 

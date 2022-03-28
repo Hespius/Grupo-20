@@ -1,4 +1,4 @@
-from sys import prefix
+# from sys import prefix
 from fastapi import APIRouter
 from controllers import users_controller as users
 
