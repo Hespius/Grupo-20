@@ -13,6 +13,7 @@ Tecnologias utilizada no projeto:
 
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"/><img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"/>
+<img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"/>
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg"/>
@@ -32,7 +33,20 @@ Para executar o backend execute o seguinte comando:
 <pre><code>cd api
 uvicorn main:app --reload
 </code></pre>
+## Configurando o frontend
 
+Instalar o <a href="https://nodejs.org/en/download/">NodeJS</a>
+
+Em seguida instalar todas as dependencias do projeto:
+
+<pre><code>npm install
+</code></pre>
+
+Para executar o frontend execute o seguinte comando:
+
+<pre><code>cd sma
+npm start
+</code></pre>
 # Grupo 20 - Agricultura familiar
 
 1. Caique de Jesus Santos
