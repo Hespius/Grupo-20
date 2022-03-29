@@ -1,14 +1,12 @@
 from ormar import exceptions
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from models.users import Usuario, LoginForm, ResponseLogin
 
 router = APIRouter()
 
 # TODO: permitir null vindo do json ao invés de vazio
-
-
-@router.post("/cadastrar/consumidor")
-async def add_consumidor(item: Usuario):
+@router.post("/cadastrar")
+async def add_usuario(item: Usuario):
 
     await item.save()
     return item
@@ -17,16 +15,6 @@ async def add_consumidor(item: Usuario):
 @router.get("/consumidores")
 async def get_consumidores():
     return await Usuario.objects.filter(produtor=False).all()
-
-
-@router.post("/cadastrar/produtor")
-async def add_produtor(item: Usuario):
-
-    item.produtor = True
-
-    await item.save()
-    return item
-
 
 @router.get("/produtores")
 async def get_produtores():
@@ -45,7 +33,7 @@ async def login(login: LoginForm):
         # responseError: ResponseLogin
         # responseError.sucesso = False
         # responseError.mensagem = ''
-        return {'sucesso':  False, 'mensagem': 'Login ou senha incorretos'}
+        raise HTTPException(status_code=404, detail='Login ou senha incorretos')
 
     responseObj = ResponseLogin(user)
 

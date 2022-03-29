@@ -1,5 +1,3 @@
-# from email.policy import default
-# from re import S
 import ormar
 
 from database import database, metadata
@@ -22,8 +20,7 @@ class Usuario(ormar.Model):
     cep: str = ormar.String(max_length=20)
     cidade: str = ormar.String(max_length=200)
     estado: str = ormar.String(max_length=30)
-    cpf: str = ormar.String(max_length=30)
-    cnpj: str = ormar.String(max_length=30)
+    cpf_cnpj: str = ormar.String(max_length=30)
     produtor: bool = ormar.Boolean(default=False)
     senha: str = ormar.String(max_length=50)
 
@@ -54,15 +51,18 @@ class ResponseLogin(Response):
         self.sucesso = sucesso
         self.mensagem = mensagem
 
-    # def __init__(self, usuario: Usuario):
+    def __init__(self, usuario: Usuario):
 
-    #     self.sucesso = True
-    #     self.mensagem = ''
+        self.sucesso = True
+        self.mensagem = ''
 
-    #     self.nome = usuario.nome
-    #     self.email = usuario.email
-    #     self.cidade = usuario.cidade
-    #     self.estado = usuario.estado
-    #     self.cpf = usuario.cpf
-    #     self.cnpj = usuario.cnpj
-    #     self.produtor = usuario.produtor
+        self.nome = usuario.nome
+        self.email = usuario.email
+        self.cidade = usuario.cidade
+        self.estado = usuario.estado
+        self.produtor = usuario.produtor
+
+        if usuario.produtor: 
+            self.cnpj = usuario.cpf_cnpj
+        else:
+            self.cpf = usuario.cpf_cnpj
