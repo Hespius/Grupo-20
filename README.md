@@ -3,7 +3,8 @@
 [![GitHub license](https://img.shields.io/github/license/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-)](https://github.com/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-/blob/main/LICENSE)
 [![Python application](https://github.com/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-/actions/workflows/python-app.yml/badge.svg)](https://github.com/ES-UFABC/SMA-Handshake-Eng-Software-2022.1-/actions/workflows/python-app.yml)
 
-O SMA Handshake é um software com a missão de possibilitar uma interação mais direta entre o pequeno e médio agricultor com o cliente final. Funcionando como um cadastro na plataforma onde teremos os dados de cadastro que serão preenchidos pelo agricultor (preço, produto, safras, quantidade e preços) e os clientes farão as demandas pelo preço.
+
+O SMA Handshake é um software com a missão fomentar a atividade agrícola familiar, aumentando a previsibilidade e segurança do negócio ao proporcionar uma interação mais direta entre o pequeno e médio agricultor com o cliente final e a negociação dos produtos para períodos futuros. 
 <br/><br/>
 
 # Como instalar
