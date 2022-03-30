@@ -14,11 +14,11 @@ async def add_usuario(item: Usuario):
 
 @router.get("/consumidores")
 async def get_consumidores():
-    return await Usuario.objects.filter(produtor=False).all()
+    return await Usuario.objects.filter(tipo = 'consumidor').all()
 
 @router.get("/produtores")
 async def get_produtores():
-    return await Usuario.objects.filter(produtor=True).all()
+    return await Usuario.objects.filter(tipo = 'produtor').all()
 
 
 @router.post('/login')

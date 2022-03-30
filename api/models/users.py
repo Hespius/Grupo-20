@@ -1,3 +1,4 @@
+from typing_extensions import Required
 import ormar
 
 from database import database, metadata
@@ -16,12 +17,12 @@ class Usuario(ormar.Model):
     email: str = ormar.String(max_length=200)
     logradouro: str = ormar.String(max_length=200)
     numero: int = ormar.Integer()
-    complemento: str = ormar.String(max_length=200)
+    complemento: str = ormar.String(max_length=200, nullable = True)
     cep: str = ormar.String(max_length=20)
     cidade: str = ormar.String(max_length=200)
     estado: str = ormar.String(max_length=30)
     cpf_cnpj: str = ormar.String(max_length=30)
-    produtor: bool = ormar.Boolean(default=False)
+    tipo: str = ormar.String(max_length=20)
     senha: str = ormar.String(max_length=50)
 
     def __str__(self):
@@ -45,7 +46,7 @@ class ResponseLogin(Response):
     estado: str
     cpf: str
     cnpj: str
-    produtor: bool
+    tipo: str
 
     def __init__(self, sucesso: bool, mensagem: str):
         self.sucesso = sucesso
@@ -60,9 +61,9 @@ class ResponseLogin(Response):
         self.email = usuario.email
         self.cidade = usuario.cidade
         self.estado = usuario.estado
-        self.produtor = usuario.produtor
+        self.tipo = usuario.tipo
 
-        if usuario.produtor: 
+        if usuario.tipo == 'produtor': 
             self.cnpj = usuario.cpf_cnpj
         else:
             self.cpf = usuario.cpf_cnpj
