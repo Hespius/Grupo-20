@@ -12,7 +12,6 @@ A plataforma permite ao pequeno agricultor disponibilizar suas commodities à ve
 
 Tecnologias utilizada no projeto:
 
-
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"/>
 <img height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
