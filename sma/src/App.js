@@ -13,7 +13,8 @@ import {
 import Home from './components/home'
 import Navbar from './components/navbar'
 import Cadastro from './components/cadastro'
-import Mercadorias from './components/mercadorias'
+import Produtor from './components/produtor'
+import Consumidor from './components/consumidor'
 import Menu from './components/menu'
 
 
@@ -24,7 +25,8 @@ function App() {
     <Routes>
         <Route exact path='/' element={<><Navbar/> <Home/> </>} />
         <Route exact path='/cadastro' element={<><Navbar/><Cadastro/></>} />
-        <Route exact path='/mercadorias' element={<Mercadorias/>} />
+        <Route exact path='/produtor' element={<Produtor/>} />
+        <Route exact path='/consumidor' element={<Consumidor/>} />
       </Routes>
     </BrowserRouter>
   );
