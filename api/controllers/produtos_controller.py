@@ -1,8 +1,8 @@
 from math import prod
 from ormar import exceptions
 from fastapi import APIRouter
-from models.produtos import Produto
-from models.users import Response, Usuario
+from api.models.produtos import Produto
+from api.models.users import Response, Usuario
 
 router = APIRouter()
 

@@ -1,6 +1,6 @@
 import ormar
 
-from database import database, metadata
+from api.database import database, metadata
 
 
 class Produto(ormar.Model):

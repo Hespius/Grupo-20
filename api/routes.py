@@ -1,8 +1,8 @@
 # from sys import prefix
 from math import prod
 from fastapi import APIRouter
-from controllers import users_controller as users
-from controllers import produtos_controller as produtos
+from api.controllers import users_controller as users
+from api.controllers import produtos_controller as produtos
 
 routes = APIRouter()
 
