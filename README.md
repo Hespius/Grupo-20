@@ -61,5 +61,5 @@ npm start
 1. Vinicius Henrique Espeçoto
 1. Giovanni Almeida de Sousa
 1. Fernando Schroder Rodirgues
-1. Oluwasheun dos Santos Calonge
+1. Oluwasheun dos Santos Calonge.
 
