@@ -1,7 +1,7 @@
 from typing_extensions import Required
 import ormar
 
-from database import database, metadata
+from api.database import database, metadata
 from pydantic import BaseModel
 
 

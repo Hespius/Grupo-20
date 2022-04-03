@@ -1,6 +1,6 @@
 from ormar import exceptions
 from fastapi import APIRouter, HTTPException
-from models.users import Usuario, LoginForm, ResponseLogin
+from api.models.users import Usuario, LoginForm, ResponseLogin
 
 router = APIRouter()
 
