@@ -13,10 +13,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+      - name: build
+        run: npm run test --if-present
+        env:
+          CI: false
       - name: Build web-app
         run: |
           cd sma
-          npm i
+          npm ci
           npm run build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
