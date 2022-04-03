@@ -17,8 +17,8 @@ jobs:
         run: |
           cd sma
           npm cache clean --force
-          npm ci
-          npm run build
+          npm install --production
+          npm run build -prod
         env:
           CI: false
       - name: Deploy to gh-pages
