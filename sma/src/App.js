@@ -1,6 +1,6 @@
 
 import './App.css';
-// import 'devextreme/dist/css/dx.greenmist.css';
+import 'devextreme/dist/css/dx.greenmist.css';
 
 import {
   BrowserRouter,

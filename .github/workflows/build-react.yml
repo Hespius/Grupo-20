@@ -16,6 +16,7 @@ jobs:
       - name: Build web-app
         run: |
           cd sma
+          npm cache clean --force
           npm ci
           npm run build
         env:
