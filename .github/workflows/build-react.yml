@@ -15,6 +15,7 @@ jobs:
           node-version: '16.x'
       - name: Build web-app
         run: |
+          cd sma
           npm ci
           npm run build
       - name: Deploy to gh-pages
