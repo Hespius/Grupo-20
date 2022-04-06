@@ -5,6 +5,8 @@ from models.users import Usuario, LoginForm, ResponseLogin
 router = APIRouter()
 
 # TODO: permitir null vindo do json ao invés de vazio
+
+
 @router.post("/cadastrar")
 async def add_usuario(item: Usuario):
 
@@ -14,11 +16,12 @@ async def add_usuario(item: Usuario):
 
 @router.get("/consumidores")
 async def get_consumidores():
-    return await Usuario.objects.filter(tipo = 'consumidor').all()
+    return await Usuario.objects.filter(tipo='consumidor').all()
+
 
 @router.get("/produtores")
 async def get_produtores():
-    return await Usuario.objects.filter(tipo = 'produtor').all()
+    return await Usuario.objects.filter(tipo='produtor').all()
 
 
 @router.post('/login')
@@ -33,7 +36,8 @@ async def login(login: LoginForm):
         # responseError: ResponseLogin
         # responseError.sucesso = False
         # responseError.mensagem = ''
-        raise HTTPException(status_code=404, detail='Login ou senha incorretos')
+        raise HTTPException(status_code=404,
+                            detail='Login ou senha incorretos')
 
     responseObj = ResponseLogin(user)
 
