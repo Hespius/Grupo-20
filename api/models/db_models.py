@@ -1,7 +1,29 @@
+from dataclasses import dataclass
 import ormar
-
 from database import database, metadata
-from pydantic import BaseModel
+
+
+class Commodity(ormar.Model):
+    class Meta:
+        metadata = metadata
+        database = database 
+        tablename = 'Commodities'
+
+    id: int = ormar.Integer(primary_key=True)
+    nome: str = ormar.String(max_length=100)
+
+
+class Oferta(ormar.Model):
+    class Meta:
+        metadata = metadata
+        database = database
+        tablename = 'Produtos'
+
+    id: int = ormar.Integer(primary_key=True)
+    data_cadastro: str = ormar.DateTime()
+    data_disponivel: str = ormar.DateTime()
+    quantidade: int = ormar.Integer()
+    preco: float = ormar.Float()
 
 
 class Usuario(ormar.Model):
@@ -24,41 +46,7 @@ class Usuario(ormar.Model):
     tipo: str = ormar.String(max_length=20)
     senha: str = ormar.String(max_length=50)
 
+    commodities = ormar.ManyToMany(Commodity, through=Oferta)
+
     def __str__(self):
         return 'nome: ' + self.nome + '\nemail: ' + self.email
-
-
-class LoginForm(BaseModel):
-    email: str
-    senha: str
-
-
-class Response():
-    sucesso: bool
-    mensagem: str
-
-
-class ResponseLogin(Response):
-    nome: str
-    email: str
-    cidade: str
-    estado: str
-    cpf: str
-    cnpj: str
-    tipo: str
-
-    def __init__(self, usuario: Usuario):
-
-        self.sucesso = True
-        self.mensagem = ''
-
-        self.nome = usuario.nome
-        self.email = usuario.email
-        self.cidade = usuario.cidade
-        self.estado = usuario.estado
-        self.tipo = usuario.tipo
-
-        if usuario.tipo == 'produtor':
-            self.cnpj = usuario.cpf_cnpj
-        else:
-            self.cpf = usuario.cpf_cnpj

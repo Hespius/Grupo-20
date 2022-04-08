@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from models.produtos import Produto
+from models.db_models import Commodity
 
 router = APIRouter()
 
@@ -7,12 +7,12 @@ router = APIRouter()
 
 
 @router.post("/cadastrar")
-async def add_consumidor(item: Produto):
+async def add_commoditty(item: Commodity):
 
     await item.save()
     return item
 
 
 @router.get("/")
-async def get_produtos():
-    return await Produto.objects.all()
+async def get_commodities():
+    return await Commodity.objects.all()
