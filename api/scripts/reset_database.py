@@ -14,20 +14,46 @@ async def config_db(database_url=DATABASE_URL):
 
 
 async def load_default_data():
-    with open('scripts/dados/commodities.json') as f:
-        commodities = []
-        dados = json.load(f)
+    await load_default_commodities()
+    # await load_default_users()
 
-        for item in dados:
 
-            commodity = Commodity(id=item['id'], nome=item['nome'])
-            # commodity.id = item['id']
-            # commodity.nome = item['nome']
+async def load_default_commodities():
+        with open('scripts/dados/commodities.json') as f:
+            commodities = []
+            dados = json.load(f)
 
-            commodities.append(commodity)
+            for item in dados:
 
-        await Commodity.objects.bulk_create(commodities)
+                commodity = Commodity(id=item['id'], nome=item['nome'])
 
+                commodities.append(commodity)
+
+            await Commodity.objects.bulk_create(commodities)
+
+async def load_default_users():
+        with open('scripts/dados/usuarios.json') as f:
+            usuarios = []
+            dados = json.load(f)
+
+            for item in dados:
+
+                usuario = Usuario (id=item['id'],
+                                  nome=item['nome'],
+                                  cep=item['cep'],
+                                  cidade=item['cidade'],
+                                  cpf_cnpj=item['cpf_cnpj'],
+                                  email=item['email'],
+                                  estado=item['estado'],
+                                  logradouro=item['logradouro'],
+                                  numero=item['numero'],
+                                  senha=item['senha'],
+                                  telefone=item['telefone'],
+                                  tipo=item['tipo'])
+
+                usuarios.append(usuario)
+
+            await Commodity.objects.bulk_create(usuarios)
 
 if __name__ == '__main__':
     asyncio.run(config_db())

@@ -1,3 +1,4 @@
+from re import S
 from pydantic import BaseModel
 from .db_models import Usuario
 
@@ -10,6 +11,10 @@ class LoginForm(BaseModel):
 class Response():
     sucesso: bool
     mensagem: str
+
+    def __init__(self, sucesso: bool, mensagem: str):
+        self.sucesso = sucesso
+        self.mensagem = mensagem
 
 
 class ResponseLogin(Response):
