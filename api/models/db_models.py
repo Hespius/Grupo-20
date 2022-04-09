@@ -49,7 +49,7 @@ class Oferta(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
     data_cadastro: str = ormar.DateTime(nullable=True)
     data_disponivel: str = ormar.DateTime()
-    quantidade: int = ormar.Integer()
+    quantidade: float = ormar.Float()
     preco: float = ormar.Float()
 
     id_commodity: int = ormar.ForeignKey(Commodity)
