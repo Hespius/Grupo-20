@@ -22,10 +22,14 @@ async def get_commodities():
 
 
 @router.get("/ofertas")
-async def get_ofertas(produtorId: int = None, commodityId: int = None, dataDisponibilidade = datetime.today(), quantidade: float = None):
-    
-    print(dataDisponibilidade)
-    ofertas = await Oferta.objects.filter(data_disponivel__lte = dataDisponibilidade).all()
+async def get_ofertas(produtorId: int = None, commodityId: int = None, dataDisponibilidade = None, quantidade: float = None):
+
+    ofertas = []
+
+    if dataDisponibilidade != None:
+        ofertas = await Oferta.objects.filter(data_disponivel__lte = dataDisponibilidade).all()
+    else:
+        ofertas = await Oferta.objects.all()
 
     if produtorId != None:
         ofertas = [oferta for oferta in ofertas if oferta.id_produtor.id == produtorId]
