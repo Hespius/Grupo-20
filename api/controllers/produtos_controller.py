@@ -16,9 +16,28 @@ async def add_commoditty(item: Commodity):
     return item
 
 
-@router.get("/")
+@router.get("/commodities")
 async def get_commodities():
     return await Commodity.objects.all()
+
+
+@router.get("/ofertas")
+async def get_ofertas(produtorId: int = None, commodityId: int = None, dataDisponibilidade = datetime.today(), quantidade: float = None):
+    
+    print(dataDisponibilidade)
+    ofertas = await Oferta.objects.filter(data_disponivel__lte = dataDisponibilidade).all()
+
+    if produtorId != None:
+        ofertas = [oferta for oferta in ofertas if oferta.id_produtor.id == produtorId]
+
+    if commodityId != None:
+        ofertas = [oferta for oferta in ofertas if oferta.id_commodity.id == commodityId]
+
+    if quantidade != None:
+        ofertas = [oferta for oferta in ofertas if oferta.quantidade >= quantidade]
+
+
+    return ofertas
 
 
 @router.post("/criar-oferta")
