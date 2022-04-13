@@ -1,12 +1,20 @@
 from ormar import exceptions
 from fastapi import APIRouter, HTTPException
-from api.models.users import Usuario, LoginForm, ResponseLogin
+from api.models.dto import LoginForm, ResponseLogin
+from api.models.db_models import Usuario
 
 router = APIRouter()
 
 # TODO: permitir null vindo do json ao invés de vazio
+
+
 @router.post("/cadastrar")
 async def add_usuario(item: Usuario):
+
+    usuario_repetido = await Usuario.objects.all(email=item.email)
+
+    if len(usuario_repetido) > 0: 
+        raise HTTPException(status_code=404, detail='e-mail já cadastrado')
 
     await item.save()
     return item
@@ -14,11 +22,12 @@ async def add_usuario(item: Usuario):
 
 @router.get("/consumidores")
 async def get_consumidores():
-    return await Usuario.objects.filter(tipo = 'consumidor').all()
+    return await Usuario.objects.filter(tipo='Consumidor').all()
+
 
 @router.get("/produtores")
 async def get_produtores():
-    return await Usuario.objects.filter(tipo = 'produtor').all()
+    return await Usuario.objects.filter(tipo='Produtor').all()
 
 
 @router.post('/login')
@@ -33,7 +42,8 @@ async def login(login: LoginForm):
         # responseError: ResponseLogin
         # responseError.sucesso = False
         # responseError.mensagem = ''
-        raise HTTPException(status_code=404, detail='Login ou senha incorretos')
+        raise HTTPException(status_code=404,
+                            detail='Login ou senha incorretos')
 
     responseObj = ResponseLogin(user)
 
