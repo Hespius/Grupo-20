@@ -25,6 +25,7 @@ export default class Cadastro extends Component {
         }
     }
 
+
     handleBlur = (e) => {
         const { cadastro } = this.state
         let newCadastro = cadastro
