@@ -20,7 +20,7 @@ import Menu from './components/menu'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="SMA-Handshake/">
     {/* <Menu/> */}
     <Routes>
         <Route exact path='/' element={<><Navbar/> <Home/> </>} />
