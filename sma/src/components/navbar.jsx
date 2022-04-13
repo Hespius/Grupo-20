@@ -51,7 +51,7 @@ render() {
         <>
         <header>
         <div>
-            <h1><a href='SMA-Handshake/'>SMA Handshake</a></h1>
+            <h1><a href='./SMA-Handshake/'>SMA Handshake</a></h1>
         </div>
         <div className='login-div'>
             <form onSubmit={this.handleSubmit}>
