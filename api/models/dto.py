@@ -17,6 +17,7 @@ class Response():
 
 
 class ResponseLogin(Response):
+    id_usuario: int
     nome: str
     email: str
     cidade: str
@@ -30,6 +31,7 @@ class ResponseLogin(Response):
         self.sucesso = True
         self.mensagem = ''
 
+        self.id_usuario = usuario.id
         self.nome = usuario.nome
         self.email = usuario.email
         self.cidade = usuario.cidade
