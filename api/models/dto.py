@@ -1,7 +1,6 @@
 from re import S
 from pydantic import BaseModel
-from .db_models import Usuario
-
+from api.models.db_models import Usuario
 
 class LoginForm(BaseModel):
     email: str

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import ormar
-from database import database, metadata
+from api.database import database, metadata
 
 
 class Commodity(ormar.Model):

@@ -1,8 +1,8 @@
 from datetime import datetime
 from fastapi import APIRouter
 
-from models.db_models import Commodity, Oferta, Usuario
-from models.dto import Response
+from api.models.db_models import Commodity, Oferta, Usuario
+from api.models.dto import Response
 
 router = APIRouter()
 
