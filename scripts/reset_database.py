@@ -1,6 +1,9 @@
 import asyncio
 import sqlalchemy
 import json
+import sys
+
+sys.path.insert(0, '/home/Storage/Documents/UFABC/engenharia-software/Grupo-20/api')
 
 from database import DATABASE_URL, metadata
 from models.db_models import Usuario, Commodity, Oferta

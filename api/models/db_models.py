@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import ormar
+
 from api.database import database, metadata
 
 
@@ -11,6 +12,22 @@ class Commodity(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     nome: str = ormar.String(max_length=100)
+
+
+class Oferta(ormar.Model):
+    class Meta:
+        metadata = metadata
+        database = database
+        tablename = 'Ofertas'
+
+    id: int = ormar.Integer(primary_key=True)
+    data_cadastro: str = ormar.DateTime(nullable=True)
+    data_disponivel: str = ormar.DateTime()
+    quantidade: float = ormar.Float()
+    preco: float = ormar.Float()
+
+    # id_commodity: int = ormar.ForeignKey(Commodity)
+    # id_produtor: int = ormar.ForeignKey(Usuario)
 
 class Usuario(ormar.Model):
     class Meta:
@@ -32,27 +49,10 @@ class Usuario(ormar.Model):
     tipo: str = ormar.String(max_length=20)
     senha: str = ormar.String(max_length=50)
 
-    commodity = ormar.ManyToMany(Commodity,
-                                 through_relation_name='id_produtor',
-                                 through_reverse_relation_name='id_commodity')
+    commodity = ormar.ManyToMany(Commodity, through=Oferta)
 
     def __str__(self):
         return 'nome: ' + self.nome + '\nemail: ' + self.email
 
-
-class Oferta(ormar.Model):
-    class Meta:
-        metadata = metadata
-        database = database
-        tablename = 'Ofertas'
-
-    id: int = ormar.Integer(primary_key=True)
-    data_cadastro: str = ormar.DateTime(nullable=True)
-    data_disponivel: str = ormar.DateTime()
-    quantidade: float = ormar.Float()
-    preco: float = ormar.Float()
-
-    id_commodity: int = ormar.ForeignKey(Commodity)
-    id_produtor: int = ormar.ForeignKey(Usuario)
 
 

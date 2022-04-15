@@ -26,38 +26,39 @@ async def get_ofertas(produtorId: int = None, commodityId: int = None, dataDispo
 
     ofertas = []
 
-    if dataDisponibilidade != None:
-        ofertas = await Oferta.objects.filter(data_disponivel__lte = dataDisponibilidade).all()
+    if dataDisponibilidade is not None:
+        ofertas = await Oferta.objects.select_all().filter(data_disponivel__lte=dataDisponibilidade).all()
     else:
-        ofertas = await Oferta.objects.all()
+        ofertas = await Oferta.objects.select_all().all()
 
-    if produtorId != None:
-        ofertas = [oferta for oferta in ofertas if oferta.id_produtor.id == produtorId]
+    if produtorId is not None:
+        ofertas = [oferta for oferta in ofertas if oferta.usuario.id == produtorId]
 
-    if commodityId != None:
-        ofertas = [oferta for oferta in ofertas if oferta.id_commodity.id == commodityId]
+    if commodityId is not None:
+        ofertas = [oferta for oferta in ofertas if oferta.commodity.id == commodityId]
 
-    if quantidade != None:
+    if quantidade is not None:
         ofertas = [oferta for oferta in ofertas if oferta.quantidade >= quantidade]
-
 
     return ofertas
 
 
 @router.post("/criar-oferta")
-async def add_oferta(oferta: Oferta):
-    produtor = await Usuario.objects.get_or_none(id=oferta.id_produtor)
+async def add_oferta(produtorId: int, commodityId: int, oferta: Oferta):
+    produtor = await Usuario.objects.get_or_none(id=produtorId)
 
     if produtor == None:
         return Response(sucesso=False, mensagem='Produtor não encontrado')
 
-    commodity = await Commodity.objects.get_or_none(id=oferta.id_commodity)
+    commodity = await Commodity.objects.get_or_none(id=commodityId)
 
     if commodity == None:
         return Response(sucesso=False, mensagem='Commodity não encontrada')
 
     oferta.data_cadastro = datetime.now()
 
-    await Oferta.save(oferta)
+    await produtor.commodity.add(commodity, data_cadastro=oferta.data_cadastro,
+                                 data_disponivel=oferta.data_disponivel, quantidade=oferta.quantidade,
+                                 preco=oferta.preco)
 
     return oferta
