@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 import ormar
 
 from api.database import database, metadata
@@ -7,7 +6,7 @@ from api.database import database, metadata
 class Commodity(ormar.Model):
     class Meta:
         metadata = metadata
-        database = database 
+        database = database
         tablename = 'Commodities'
 
     id: int = ormar.Integer(primary_key=True)
@@ -26,8 +25,6 @@ class Oferta(ormar.Model):
     quantidade: float = ormar.Float()
     preco: float = ormar.Float()
 
-    # id_commodity: int = ormar.ForeignKey(Commodity)
-    # id_produtor: int = ormar.ForeignKey(Usuario)
 
 class Usuario(ormar.Model):
     class Meta:
@@ -53,6 +50,3 @@ class Usuario(ormar.Model):
 
     def __str__(self):
         return 'nome: ' + self.nome + '\nemail: ' + self.email
-
-
-
