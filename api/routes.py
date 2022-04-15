@@ -1,5 +1,3 @@
-# from sys import prefix
-from math import prod
 from fastapi import APIRouter
 
 from api.controllers import users_controller as users
