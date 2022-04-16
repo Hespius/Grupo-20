@@ -34,10 +34,10 @@ handleSubmit = async (e) => {
 loginRedirect = (response) => {
     if(response.status === 200){
         if(response.data.tipo === "Produtor"){
-            window.location.href = "/produtor"
+            window.location.href = "./produtor"
         }
         else {
-            window.location.href = "/consumidor"
+            window.location.href = "./consumidor"
         }
     }
     else {
@@ -51,7 +51,7 @@ render() {
         <>
         <header>
         <div>
-            <h1><a href='./SMA-Handshake-Eng-Software-2022.1-/'>SMA Handshake</a></h1>
+            <h1><a href='./'>SMA Handshake</a></h1>
         </div>
         <div className='login-div'>
             <form onSubmit={this.handleSubmit}>
