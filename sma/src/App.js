@@ -47,7 +47,7 @@ render(){
 
 const user = this.getUser()
 return (
-  <BrowserRouter>
+  <BrowserRouter basename='SMA-Handshake-Eng-Software-2022.1-/'>
 {/* <Menu/> */}
 <Navbar user= {this.state.login} />
 <Routes>
