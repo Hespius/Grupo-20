@@ -10,7 +10,7 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import 'devextreme-react/text-area';
 import { Item } from 'devextreme-react/form';
-import { setProduto } from '../middleware/servicesProduto';
+import { setProduto, getOfertas, getCommodities } from '../middleware/servicesProduto';
 
 const data = [{
     id: 1,
@@ -44,16 +44,32 @@ export default class Produtor extends Component {
         console.log(response)
     }
 
+    getOfertas = async () => {
+        var result = await getOfertas({produtorId: 1})
+        // console.log(result)
+        this.setState({ofertas: result.data})
+    }
+
+    getCommodities = async () => {
+        var result = await getCommodities()
+        console.log("==========data=============",result.data.map(x=>x.nome))
+        this.setState({commodities: result.data.map(x=>x.nome)})
+    }
+
+    componentDidMount() {
+        this.getOfertas()
+        this.getCommodities()
+    }
 
     render() {
-
+        const {commodities} = this.state
         return (
 
             <>
             <div className='std-div'>
             <h1>Perfil do Produtor</h1>
                 <DataGrid
-                    dataSource={data}
+                    dataSource={this.state.ofertas}
                     onRowInserting={this.onInsertHandler}>
                     <Paging enabled={false} />
                     <Editing
@@ -61,15 +77,18 @@ export default class Produtor extends Component {
                         allowAdding={true}
                         allowUpdating={true}
                         allowDeleting={true}>
-                            <Popup title='Registrar' showTitle={true} width={700} height={500} />
+                            {/* <Popup title='Registrar' showTitle={true} width={700} height={500} /> */}
                             <Column dataField="data_disponivel" dataType="date"></Column>
-                            <Form>
+                            <Column dataField="commodity" >
+                                <Lookup dataSource={commodities} displayExpr="commodity" valueExpr="commodity" allowClearing={true}></Lookup>    
+                            </Column>
+                            {/* <Form>
                                 <Item dataField = 'commodity'/>
                                 <Item dataField = 'data_disponivel' dataType='date'/>
                                 <Item dataField = 'quantidade' />
                                 <Item dataField = 'preco' />
 
-                            </Form>
+                            </Form> */}
                         </Editing>
                 </DataGrid>
             </div>

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from api.models.db_models import Usuario
+from api.models.db_models import Oferta, Usuario
 
 
 class LoginForm(BaseModel):
@@ -43,3 +43,22 @@ class ResponseLogin(Response):
             self.cnpj = usuario.cpf_cnpj
         else:
             self.cpf = usuario.cpf_cnpj
+
+
+class OfertaDto ():
+
+    def __init__(self, oferta: Oferta):
+        self.id = oferta.id
+        self.data_disponivel = oferta.data_disponivel
+        self.quantidade = oferta.quantidade
+        self.preco = oferta.preco
+        self.commodity = oferta.commodity.nome
+        self.usuario = oferta.usuario.nome
+
+
+    id: int
+    data_disponivel: str
+    quantidade: float
+    preco: float
+    commodity: str
+    usuario: str

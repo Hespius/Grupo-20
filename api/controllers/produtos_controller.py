@@ -2,7 +2,7 @@ from datetime import datetime
 from fastapi import APIRouter
 
 from api.models.db_models import Commodity, Oferta, Usuario
-from api.models.dto import Response
+from api.models.dto import OfertaDto, Response
 
 router = APIRouter()
 
@@ -22,10 +22,11 @@ async def get_commodities():
 
 
 @router.get("/ofertas")
-async def get_ofertas(produtorId: int = None, commodityId: int = None,
+async def get_ofertas(produtorId: int = None, commodityName: str = None,
                       dataDisponibilidade=None, quantidade: float = None):
 
     ofertas = []
+    ofertasDto = []
 
     if dataDisponibilidade is not None:
         ofertas = await Oferta.objects.select_all().filter(
@@ -37,25 +38,27 @@ async def get_ofertas(produtorId: int = None, commodityId: int = None,
         ofertas = [oferta for oferta in ofertas if
                    oferta.usuario.id == produtorId]
 
-    if commodityId is not None:
+    if commodityName is not None:
         ofertas = [oferta for oferta in ofertas if
-                   oferta.commodity.id == commodityId]
+                   oferta.commodity.nome == commodityName]
 
     if quantidade is not None:
         ofertas = [oferta for oferta in ofertas if
                    oferta.quantidade >= quantidade]
 
-    return ofertas
+    ofertasDto = [OfertaDto(oferta) for oferta in ofertas]
+
+    return ofertasDto
 
 
 @router.post("/criar-oferta")
-async def add_oferta(produtorId: int, commodityId: int, oferta: Oferta):
+async def add_oferta(produtorId: int, commodityName: str, oferta: Oferta):
     produtor = await Usuario.objects.get_or_none(id=produtorId)
 
     if produtor is None:
         return Response(sucesso=False, mensagem='Produtor não encontrado')
 
-    commodity = await Commodity.objects.get_or_none(id=commodityId)
+    commodity = await Commodity.objects.get_or_none(nome=commodityName)
 
     if commodity is None:
         return Response(sucesso=False, mensagem='Commodity não encontrada')
@@ -68,3 +71,13 @@ async def add_oferta(produtorId: int, commodityId: int, oferta: Oferta):
                                  preco=oferta.preco)
 
     return oferta
+
+
+# @router.post('/ordem')
+# async def add_ordem(ordem: Ordem):
+
+#     ordemDB = await Ordem.save(ordem)
+
+#     # ordemDB = await Ordem.objects.select_all().all()
+
+#     return ordemDB

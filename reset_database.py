@@ -3,7 +3,8 @@ import sqlalchemy
 import json
 import sys
 
-sys.path.insert(0, '/home/Storage/Documents/UFABC/engenharia-software/Grupo-20/api')
+sys.path.insert(0, '/home/Storage/Documents/UFABC/' +
+                'engenharia-software/Grupo-20/api')
 
 from database import DATABASE_URL, metadata
 from models.db_models import Usuario, Commodity, Oferta
@@ -28,11 +29,12 @@ async def load_default_commodities():
 
             for item in dados:
 
-                commodity = Commodity(id=item['id'], nome=item['nome'])
+                commodity = Commodity(nome=item['nome'])
 
                 commodities.append(commodity)
 
             await Commodity.objects.bulk_create(commodities)
+
 
 async def load_default_users():
         with open('scripts/dados/usuarios.json') as f:
@@ -41,7 +43,7 @@ async def load_default_users():
 
             for item in dados:
 
-                usuario = Usuario (id=item['id'],
+                usuario = Usuario(id=item['id'],
                                   nome=item['nome'],
                                   cep=item['cep'],
                                   cidade=item['cidade'],
