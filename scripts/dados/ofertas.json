@@ -1,0 +1,72 @@
+[
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 200,
+    "preco": 15.99,
+    "produtorId": 1,
+    "commodityId": 1
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 300,
+    "preco": 19.99,
+    "produtorId": 1,
+    "commodityId": 2
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 150,
+    "preco": 29.99,
+    "produtorId": 1,
+    "commodityId": 3
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 450,
+    "preco": 12.99,
+    "produtorId": 1,
+    "commodityId": 4
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 500,
+    "preco": 18.99,
+    "produtorId": 1,
+    "commodityId": 5
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 50,
+    "preco": 14.99,
+    "produtorId": 2,
+    "commodityId": 6
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 80,
+    "preco": 39.99,
+    "produtorId": 2,
+    "commodityId": 7
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 120,
+    "preco": 25.99,
+    "produtorId": 2,
+    "commodityId": 8
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 210,
+    "preco": 21.99,
+    "produtorId": 2,
+    "commodityId": 9
+  },
+  {
+    "data_disponivel": "2022-04-08T00:00:00",
+    "quantidade": 190,
+    "preco": 9.99,
+    "produtorId": 2,
+    "commodityId": 10
+  }
+]
