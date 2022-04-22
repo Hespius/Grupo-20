@@ -65,5 +65,5 @@ class Ordem(ormar.Model):
     quantidade: float = ormar.Float()
     data_requisitada: str = ormar.DateTime()
 
-    ordem: Optional[Oferta] = ormar.ForeignKey(Oferta)
+    oferta: Optional[Oferta] = ormar.ForeignKey(Oferta)
     comprador: Optional[Usuario] = ormar.ForeignKey(Usuario)

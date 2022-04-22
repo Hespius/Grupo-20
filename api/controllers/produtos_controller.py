@@ -1,7 +1,7 @@
 from datetime import datetime
 from fastapi import APIRouter
 
-from api.models.db_models import Commodity, Oferta, Usuario
+from api.models.db_models import Commodity, Oferta, Usuario, Ordem
 from api.models.dto import OfertaDto, Response
 
 router = APIRouter()
@@ -30,7 +30,7 @@ async def get_ofertas(produtorId: int = None, commodityName: str = None,
 
     if dataDisponibilidade is not None:
         ofertas = await Oferta.objects.select_all().filter(
-                            data_disponivel__lte=dataDisponibilidade).all()
+            data_disponivel__lte=dataDisponibilidade).all()
     else:
         ofertas = await Oferta.objects.select_all().all()
 
@@ -64,6 +64,7 @@ async def add_oferta(produtorId: int, commodityName: str, oferta: Oferta):
         return Response(sucesso=False, mensagem='Commodity não encontrada')
 
     oferta.data_cadastro = datetime.now()
+    oferta.saldo = oferta.quantidade
 
     await produtor.commodity.add(commodity, data_cadastro=oferta.data_cadastro,
                                  data_disponivel=oferta.data_disponivel,
@@ -73,11 +74,21 @@ async def add_oferta(produtorId: int, commodityName: str, oferta: Oferta):
     return oferta
 
 
-# @router.post('/ordem')
-# async def add_ordem(ordem: Ordem):
+@router.post('/ordem')
+async def add_ordem(ordem: Ordem):
 
-#     ordemDB = await Ordem.save(ordem)
+    ordemDB = await Ordem.save(ordem)
 
-#     # ordemDB = await Ordem.objects.select_all().all()
+    # ordemDB = await Ordem.objects.select_all().all()
 
-#     return ordemDB
+    return ordemDB
+
+
+@router.get('/ordem')
+async def get_ordens(consumidorId: int, produtorId: int):
+
+    ordens = await Ordem.objects.select_all().all()
+
+    # ordemDB = await Ordem.objects.select_all().all()
+
+    return ordens

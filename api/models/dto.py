@@ -54,11 +54,12 @@ class OfertaDto ():
         self.preco = oferta.preco
         self.commodity = oferta.commodity.nome
         self.usuario = oferta.usuario.nome
-
+        self.saldo = oferta.saldo
 
     id: int
     data_disponivel: str
     quantidade: float
+    saldo: float
     preco: float
     commodity: str
     usuario: str

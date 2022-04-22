@@ -82,19 +82,25 @@ async def load_default_ofertas():
         for id in ids_produtores:
             produtor = await Usuario.objects.get_or_none(id=id)
 
-            # print('======= OFERTAS DO PRODUTOR {} ======='.format(id))
             for item in dados:
                 if item['produtorId'] == id:
                     commodity = [
                         x for x in commodities if x.id == item['commodityId']][0]
 
-                    await produtor.commodity.add(commodity, data_cadastro=data_cadastro,
+                    await produtor.commodity.add(commodity,
+                                                 data_cadastro=data_cadastro,
                                                  data_disponivel=item['data_disponivel'],
                                                  quantidade=item['quantidade'],
                                                  saldo=item['quantidade'],
                                                  preco=item['preco'])
-                    print(
-                        "Adicionou a oferta de {} Kgs de {} pelo o produtor {} ao preço de {}".format(item['quantidade'], commodity.nome, produtor.nome, item['preco']))
+
+                    txt = 'Adicionou a oferta de {} Kgs de {}'
+                    + 'pelo o produtor {} ao preço de {}'
+
+                    print(txt.format(
+                        item['quantidade'],
+                        commodity.nome,
+                        produtor.nome, item['preco']))
 
 if __name__ == '__main__':
     asyncio.run(config_db())
