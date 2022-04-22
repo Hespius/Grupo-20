@@ -77,6 +77,17 @@ async def add_oferta(produtorId: int, commodityName: str, oferta: Oferta):
 @router.post('/ordem')
 async def add_ordem(ordem: Ordem):
 
+    ofertaDB = await Oferta.objects.get_or_none(id=ordem.oferta)
+
+    if ofertaDB is None:
+        return Response(sucesso=False, mensagem='Oferta não existe')
+
+    if ordem.quantidade > ofertaDB.saldo:
+        return Response(sucesso=False,
+                        mensagem='Quantidade requirida maior que o estoque')
+
+    await ofertaDB.update(saldo=ofertaDB.saldo - ordem.quantidade)
+
     ordemDB = await Ordem.save(ordem)
 
     # ordemDB = await Ordem.objects.select_all().all()
