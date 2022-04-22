@@ -90,16 +90,21 @@ async def add_ordem(ordem: Ordem):
 
     ordemDB = await Ordem.save(ordem)
 
-    # ordemDB = await Ordem.objects.select_all().all()
-
     return ordemDB
 
 
 @router.get('/ordem')
-async def get_ordens(consumidorId: int, produtorId: int):
+async def get_ordens(consumidorId: int = None, produtorId: int = None):
 
-    ordens = await Ordem.objects.select_all().all()
+    ordens = await Ordem.objects.select_related(
+        [Ordem.oferta.usuario, Ordem.comprador]).all()
 
-    # ordemDB = await Ordem.objects.select_all().all()
+    if consumidorId is not None:
+        ordens = [ordem for ordem in ordens if ordem.comprador.id ==
+                  consumidorId]
+
+    if produtorId is not None:
+        ordens = [ordem for ordem in ordens if ordem.oferta.usuario.id ==
+                  produtorId]
 
     return ordens
