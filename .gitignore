@@ -1,3 +1,9 @@
+# arquivos do vs code
+.vscode/
+
+# pasta do environment
 env
+
+# script de reset do banco de dados, só pode ser executado na raiz mas fica armazenado na pasta scripts
 reset_database.py
 !scripts/reset_database.py
