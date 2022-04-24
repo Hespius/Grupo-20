@@ -2,27 +2,27 @@ import React, { Component } from "react";
 import { setLogin } from "../middleware/servicesCadastro";
 import { Navigate } from "react-router-dom";
 
-export function getUser() {
-  const login = Navbar.getUser();
-  return login;
-}
+// export function getUser() {
+//   const login = Navbar.getUser();
+//   return login;
+// }
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
 
-    this.getUser = () => {
-      return this.state.login;
+    this.state = {
+      login: {
+        email: "",
+        senha: "",
+        auth: false,
+      },
     };
   }
 
-  state = {
-    login: {
-      email: "",
-      senha: "",
-      auth: false,
-    },
-  };
+  getUser() {
+    return this.state.login;
+  }
 
   // componentDidMount(){
 
