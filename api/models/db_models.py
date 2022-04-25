@@ -1,4 +1,6 @@
+from curses import meta
 import ormar
+from typing import Optional
 
 from api.database import database, metadata
 
@@ -23,6 +25,7 @@ class Oferta(ormar.Model):
     data_cadastro: str = ormar.DateTime(nullable=True)
     data_disponivel: str = ormar.DateTime()
     quantidade: float = ormar.Float()
+    saldo: float = ormar.Float()
     preco: float = ormar.Float()
 
 
@@ -50,3 +53,17 @@ class Usuario(ormar.Model):
 
     def __str__(self):
         return 'nome: ' + self.nome + '\nemail: ' + self.email
+
+
+class Ordem(ormar.Model):
+    class Meta:
+        metadata = metadata
+        database = database
+        tablename = 'Ordens'
+
+    id: int = ormar.Integer(primary_key=True)
+    quantidade: float = ormar.Float()
+    data_requisitada: str = ormar.DateTime()
+
+    oferta: Optional[Oferta] = ormar.ForeignKey(Oferta)
+    comprador: Optional[Usuario] = ormar.ForeignKey(Usuario)
