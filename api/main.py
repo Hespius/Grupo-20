@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.routes import routes

@@ -13,6 +13,7 @@ router = APIRouter()
 async def add_usuario(item: Usuario):
 
     usuario_repetido = await Usuario.objects.all(email=item.email)
+    print(usuario_repetido)
 
     if len(usuario_repetido) > 0: 
         raise HTTPException(status_code=404, detail='e-mail já cadastrado')
