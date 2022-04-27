@@ -39,9 +39,8 @@ class App extends Component {
   render() {
     // const user = this.getUser();
     return (
-      <BrowserRouter basename="SMA-Handshake-Eng-Software-2022.1-/">
+      <BrowserRouter basename="/">
         {/* <Menu/> */}
-        <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/cadastro" element={<Cadastro />} />
