@@ -162,15 +162,15 @@ export default class Consumidor extends Component {
   };
 
   async componentDidMount() {
-    var result = await getCommodities();
-    console.log(result);
-    this.setState({
-      commoditiesOptions: {
-        items: result.data.map((x) => x.nome),
-        searchEnabled: true,
-        value: "",
-      },
-    });
+    // var result = await getCommodities();
+    // console.log(result);
+    // this.setState({
+    //   commoditiesOptions: {
+    //     items: result.data.map((x) => x.nome),
+    //     searchEnabled: true,
+    //     value: "",
+    //   },
+    // });
   }
 
   render() {
