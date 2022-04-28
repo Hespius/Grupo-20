@@ -162,15 +162,15 @@ export default class Consumidor extends Component {
   };
 
   async componentDidMount() {
-    // var result = await getCommodities();
-    // console.log(result);
-    // this.setState({
-    //   commoditiesOptions: {
-    //     items: result.data.map((x) => x.nome),
-    //     searchEnabled: true,
-    //     value: "",
-    //   },
-    // });
+    var result = await getCommodities();
+    console.log(result);
+    this.setState({
+      commoditiesOptions: {
+        items: result.data.map((x) => x.commodity),
+        searchEnabled: true,
+        value: "",
+      },
+    });
   }
 
   render() {
@@ -178,6 +178,7 @@ export default class Consumidor extends Component {
 
     return (
       <>
+        <Navbar />
         <div>
           <div className="std-div">
             <h1>Perfil do Consumidor</h1>
@@ -219,6 +220,7 @@ export default class Consumidor extends Component {
             {/* <Editing mode='popup' allowUpdating={true} useIcons={true}  /> */}
             <Paging enabled={false} />
             <Selection mode="multiple" />
+            <Column dataField="usuario" />
             <Column dataField="commodity" />
             <Column dataField="data_disponivel" />
             <Column dataField="quantidade" caption="Qtde disponível" />
