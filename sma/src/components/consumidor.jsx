@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
+import { connect } from "react-redux";
 import DataGrid, {
   Column,
   Editing,
@@ -50,7 +51,7 @@ const buttonOptions = {
   width: 200,
 };
 
-export default class Consumidor extends Component {
+class Consumidor extends Component {
   constructor(props) {
     super(props);
     this.navbar = React.createRef();
@@ -124,7 +125,8 @@ export default class Consumidor extends Component {
         event.dataField === "quantidade" ||
         event.dataField === "preco" ||
         event.dataField === "data_disponivel" ||
-        event.dataField === "usuario")
+        event.dataField === "usuario" ||
+        event.dataField === "saldo")
     ) {
       event.editorOptions.disabled = true;
     }
@@ -145,7 +147,7 @@ export default class Consumidor extends Component {
       var ordemDto = {
         quantidade: qtdeCompra,
         data_requisitada: new Date(),
-        comprador: 1,
+        comprador: this.props.id,
         oferta: e.oldData.id,
       };
       console.log("===== ordemDTO =====", ordemDto);
@@ -224,8 +226,9 @@ export default class Consumidor extends Component {
             <Column dataField="commodity" />
             <Column dataField="data_disponivel" />
             <Column dataField="quantidade" caption="Qtde disponível" />
+            <Column dataField="saldo" />
             <Column dataField="preco" />
-            <Column dataField="comprar" allowEditing={true} />
+            <Column dataField="comprar" allowEditing={true} visible={false} />
             <Editing
               mode="popup"
               allowUpdating={true}
@@ -281,3 +284,11 @@ export default class Consumidor extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  nome: state.AutenticationReducer.nome,
+  email: state.AutenticationReducer.email,
+  id: state.AutenticationReducer.id,
+});
+
+export default connect(mapStateToProps, {})(Consumidor);
