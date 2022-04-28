@@ -44,28 +44,29 @@ class Produtor extends Component {
   onInsertHandler = async (ev) => {
     console.log(ev.data);
     const data = {
-      commodity: ev.data.commodity,
       preco: ev.data.preco,
       quantidade: ev.data.quantidade,
       data_disponivel: ev.data.data_disponivel,
+      saldo: 0,
+      usuario: this.props.id,
+      commodity: ev.data.commodity,
     };
     console.log(data);
-    var response = await setProduto(data, this.props.id, 1);
+    var response = await setProduto(data);
     console.log(response);
   };
 
   getData = async () => {
     var commodities = await getCommodities();
     var ofertas = await getOfertas({ produtorId: this.props.id });
+    console.log("commodities: ", commodities.data);
     this.setState({
       ofertas: ofertas.data,
-      commodities: commodities.data.map((x) => x.nome),
+      commodities: commodities.data,
     });
   };
 
   componentDidMount() {
-    // this.getOfertas();
-    // this.getCommodities();
     this.getData();
   }
 
@@ -81,29 +82,30 @@ class Produtor extends Component {
             onRowInserting={this.onInsertHandler}
           >
             <Paging enabled={false} />
+            {/* <Popup title='Registrar' showTitle={true} width={700} height={500} /> */}
+            <Column dataField="commodity">
+              <Lookup
+                dataSource={commodities}
+                displayExpr="commodity"
+                valueExpr="commodity"
+                allowClearing={true}
+              ></Lookup>
+            </Column>
+            <Column dataField="quantidade" />
+            <Column dataField="preco" />
+            <Column dataField="data_disponivel" dataType="date"></Column>
             <Editing
               mode="popup"
               allowAdding={true}
               allowUpdating={true}
               allowDeleting={true}
             >
-              {/* <Popup title='Registrar' showTitle={true} width={700} height={500} /> */}
-              <Column dataField="data_disponivel" dataType="date"></Column>
-              <Column dataField="commodity">
-                <Lookup
-                  dataSource={commodities}
-                  displayExpr="commodity"
-                  valueExpr="commodity"
-                  allowClearing={true}
-                ></Lookup>
-              </Column>
-              {/* <Form>
-                                <Item dataField = 'commodity'/>
-                                <Item dataField = 'data_disponivel' dataType='date'/>
-                                <Item dataField = 'quantidade' />
-                                <Item dataField = 'preco' />
-
-                            </Form> */}
+              <Form>
+                <Item dataField="commodity" />
+                <Item dataField="data_disponivel" dataType="date" />
+                <Item dataField="quantidade" />
+                <Item dataField="preco" />
+              </Form>
             </Editing>
           </DataGrid>
         </div>

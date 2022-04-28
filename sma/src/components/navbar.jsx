@@ -108,15 +108,7 @@ class Navbar extends Component {
     // const auth = this.state.login.auth;
     const { login } = this.state;
     // const { user } = useSelector((state) => console.log(state));
-    // console.log("====== render ========");
-    // console.log(this.state.login);
     const { nome, email, id } = this.props;
-    console.log("this.state: ", this.state);
-    console.log("window.location: ", window.location);
-    console.log(
-      "condição",
-      this.redirect && window.location.href !== "/produtor"
-    );
     if (this.redirect && window.location.href !== "/produtor") {
       this.redirect = false;
       return <Navigate to={this.state.url} />;

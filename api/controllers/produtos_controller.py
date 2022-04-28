@@ -2,7 +2,7 @@ from datetime import datetime
 from fastapi import APIRouter
 
 from api.models.db_models import Commodity, Oferta, Usuario, Ordem
-from api.models.dto import OfertaDto, Response
+from api.models.dto import OfertaDto, Response, OfertaDto2
 
 router = APIRouter()
 
@@ -18,7 +18,11 @@ async def add_commoditty(item: Commodity):
 
 @router.get("/commodities")
 async def get_commodities():
-    return await Commodity.objects.all()
+    commodities = await Commodity.objects.all()
+
+    commoditiesDTO = [{"commodity": item.nome} for item in commodities]
+
+    return commoditiesDTO
 
 
 @router.get("/ofertas")
@@ -52,24 +56,25 @@ async def get_ofertas(produtorId: int = None, commodityName: str = None,
 
 
 @router.post("/criar-oferta")
-async def add_oferta(produtorId: int, commodityName: str, oferta: Oferta):
-    produtor = await Usuario.objects.get_or_none(id=produtorId)
+async def add_oferta(oferta: OfertaDto2):
+    produtor = await Usuario.objects.get_or_none(id=oferta.usuario)
 
     if produtor is None:
         return Response(sucesso=False, mensagem='Produtor não encontrado')
 
-    commodity = await Commodity.objects.get_or_none(nome=commodityName)
+    commodity = await Commodity.objects.get_or_none(nome=oferta.commodity)
 
     if commodity is None:
         return Response(sucesso=False, mensagem='Commodity não encontrada')
 
-    oferta.data_cadastro = datetime.now()
+    data_cadastro = datetime.now()
     oferta.saldo = oferta.quantidade
 
-    await produtor.commodity.add(commodity, data_cadastro=oferta.data_cadastro,
+    await produtor.commodity.add(commodity, data_cadastro=data_cadastro,
                                  data_disponivel=oferta.data_disponivel,
                                  quantidade=oferta.quantidade,
-                                 preco=oferta.preco)
+                                 preco=oferta.preco,
+                                 saldo=oferta.saldo)
 
     return oferta
 
