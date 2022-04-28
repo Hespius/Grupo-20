@@ -14,7 +14,7 @@ async def add_usuario(item: Usuario):
 
     usuario_repetido = await Usuario.objects.all(email=item.email)
 
-    if len(usuario_repetido) > 0: 
+    if len(usuario_repetido) > 0:
         raise HTTPException(status_code=404, detail='e-mail já cadastrado')
 
     await item.save()
@@ -40,9 +40,6 @@ async def login(login: LoginForm):
         user = await Usuario.objects.get(email=login.email, senha=login.senha)
 
     except exceptions.NoMatch:
-        # responseError: ResponseLogin
-        # responseError.sucesso = False
-        # responseError.mensagem = ''
         raise HTTPException(status_code=404,
                             detail='Login ou senha incorretos')
 

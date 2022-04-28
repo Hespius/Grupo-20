@@ -4,11 +4,9 @@ import http from "./httpService";
 let backPath = "http://localhost:8000/produtos";
 // let backPath = "https://sma-ufabc202201-backend.herokuapp.com/produtos"
 
-export async function setProduto(produto, produtorId, commodityId) {
-  return await http.post(backPath + "/cadastrar", {
-    params: { produtorId: produtorId, commodityId: commodityId },
-    data: produto,
-  });
+export async function setProduto(produto) {
+  console.log("produto: ", produto);
+  return await http.post(backPath + "/criar-oferta", produto);
 }
 
 export async function getCommodities() {

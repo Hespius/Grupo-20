@@ -63,3 +63,13 @@ class OfertaDto ():
     preco: float
     commodity: str
     usuario: str
+
+
+class OfertaDto2 (BaseModel):
+
+    data_disponivel: str
+    quantidade: float
+    saldo: float
+    preco: float
+    commodity: str
+    usuario: int
