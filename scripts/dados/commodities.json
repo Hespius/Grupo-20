@@ -1,35 +1,47 @@
 [
-    {
-        "nome": "Arroz"
-    },
-    {
-        "nome": "Feijão"
-    },
-    {
-        "nome": "Trigo"
-    },
-    {
-        "nome": "Tomate"
-    },
-    {
-        "nome": "Alface"
-    },
-    {
-        "nome": "Cebola"
-    },
-    {
-        "nome": "Cenoura"
-    },
-    {
-        "nome": "Maçã"
-    },
-    {
-        "nome": "Laranja"
-    },
-    {
-        "nome": "Mandioca"
-    },
-    {
-        "nome": "Banana"
-    }
+  {
+    "nome": "Arroz"
+  },
+  {
+    "nome": "Feijão"
+  },
+  {
+    "nome": "Trigo"
+  },
+  {
+    "nome": "Tomate"
+  },
+  {
+    "nome": "Alface"
+  },
+  {
+    "nome": "Cebola"
+  },
+  {
+    "nome": "Cenoura"
+  },
+  {
+    "nome": "Maçã"
+  },
+  {
+    "nome": "Laranja"
+  },
+  {
+    "nome": "Mandioca"
+  },
+  {
+    "nome": "Banana"
+  },
+  {
+    "nome": "Repolho"
+  },
+  {
+    "nome": "Coentro"
+  },
+  {
+    "nome": "Rabanete"
+  },
+  {
+    "nome": "Limão"
+  }
 ]
