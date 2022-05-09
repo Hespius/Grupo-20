@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { setCadastro } from '../middleware/servicesCadastro';
 import '../components/cadastro.css';
+import Button from './button';
+import Navbar from './navbar';
 export default class Cadastro extends Component {
     constructor() {
         super();
@@ -24,7 +26,6 @@ export default class Cadastro extends Component {
             showMessage: false,
         }
     }
-
 
     handleBlur = (e) => {
         const { cadastro } = this.state
@@ -79,59 +80,80 @@ export default class Cadastro extends Component {
 
     render() {
         return (
-
-            <>
-                <div>
-                </div>
+            <div className="register-container">
+            <Navbar isRegister={true}/>
                 <div className='div-cadastro'>
                     <form className='cadastro' onSubmit={this.handleSubmit}>
-                        <h1>Cadastro</h1>
-                        <div className='div-global'>
+                        <h4 className="title-text-register">Por favor, preencha os campos abaixo com seus dados:</h4>
+                        <div className='div-register-content'>
                             <div className='div-form'>
-                                <label>Tipo</label>
-                                <input list="tipos" id='tipo' onBlur={this.handleBlur} />
-                                <datalist id="tipos">
-                                    <option value="Produtor" />
-                                    <option value="Consumidor" />
-                                </datalist>
-                                <label>Nome</label>
-                                <input id='nome' onBlur={this.handleBlur}></input>
-                                <label>CPF/CNPJ</label>
-                                <input id='cpf_cnpj' onBlur={this.handleBlur}></input>
-                                <label>Telefone</label>
-                                <input id='telefone' onBlur={this.handleBlur}></input>
-                                <label>Estado</label>
-                                <select onChange={this.handleStateDropdown} id='estado' onBlur={this.handleBlur}>
-                                    {this.stateOptions()}
-                                </select>
-                                <label>Cidade</label>
-                                <input id='cidade' onBlur={this.handleBlur}></input>
-                            </div>
-                            <div className='div-form'>
-                                <label>CEP</label>
-                                <input id='cep' onBlur={this.handleBlur}></input>
-                                <label>Logradouro</label>
-                                <input id='logradouro' onBlur={this.handleBlur}></input>
-                                <label>Nº</label>
-                                <input id='numero' onBlur={this.handleBlur}></input>
-                                <label>Complemento</label>
-                                <input id='complemento' onBlur={this.handleBlur}></input>
-                                <label>E-mail</label>
-                                <input id='email' type='email' onBlur={this.handleBlur}></input>
-                                <label>Senha</label>
-                                <input id='senha' type='password' onBlur={this.handleBlur}></input>
-                                <label>Confirmar Senha</label>
-                                <input id='checkSenha' type='password' onChange={this.handleCheckPassword} onBlur={this.handleBlur}></input>
+                                <div className="input-field-container">
+                                    <label className="label-register">Tipo</label>
+                                    <input className="input-register" list="tipos" id='tipo' onBlur={this.handleBlur} />
+                                    <datalist id="tipos">
+                                        <option value="Produtor" />
+                                        <option value="Consumidor" />
+                                    </datalist>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Nome</label>
+                                    <input className="input-register" id='nome' onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">CPF/CNPJ</label>
+                                    <input className="input-register" id='cpf_cnpj' type="number" onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Telefone</label>
+                                    <input className="input-register" id='telefone' type="number" onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Estado</label>
+                                    <select className="input-register" onChange={this.handleStateDropdown} id='estado' onBlur={this.handleBlur}>
+                                        {this.stateOptions()}
+                                    </select>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Cidade</label>
+                                    <input className="input-register" id='cidade' onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">CEP</label>
+                                    <input className="input-register" id='cep' type="number" onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Logradouro</label>
+                                    <input className="input-register" id='logradouro' onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Nº</label>
+                                    <input className="input-register" id='numero' type="number" onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Complemento</label>
+                                    <input className="input-register" id='complemento' onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">E-mail</label>
+                                    <input className="input-register" id='email' type='email' onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Senha</label>
+                                    <input className="input-register" id='senha' type='password' onBlur={this.handleBlur}></input>
+                                </div>
+                                <div className="input-field-container">
+                                    <label className="label-register">Confirmar Senha</label>
+                                    <input className="input-register" id='checkSenha' type='password' onChange={this.handleCheckPassword} onBlur={this.handleBlur}></input>
+                                </div>
                             </div>
                             <div className='button-container'>
-                                <button disabled={this.state.disabledCreate} className='confirmar-cadastro'>Cadastrar-se</button>
+                                <Button text="Cadastrar-se" disabled={this.state.disabledCreate}/>
                                 {this.state.showMessage && <span className="text-error">Senha não confere</span>}
                             </div>
                         </div>
                     </form>
                 </div>
-            </>
-
+            </div>
         )
     }
 
