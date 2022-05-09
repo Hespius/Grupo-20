@@ -1,0 +1,18 @@
+.consumer-container {
+    height: 100vh;
+    background-color: #effdef;
+  }
+  
+  .consumer-title {
+    margin: 32px 0px;
+    margin-left: 10%;
+  }
+  
+  .consumer-search-container {
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    background-color: #fbfbfb;
+    border-radius: 8px;
+  }
