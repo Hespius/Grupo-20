@@ -1,0 +1,23 @@
+[
+  {
+    "produtorId": 1,
+    "data": {
+      "serie": [30, 25, 20, 15, 10],
+      "labels": ["Arroz", "Feijão", "Trigo", "Tomate", "Alface"]
+    }
+  },
+  {
+    "produtorId": 2,
+    "data": {
+      "serie": [45, 20, 15, 15, 5],
+      "labels": ["Cebola", "Cenoura", "Maçã", "Laranja", "Mandioca"]
+    }
+  },
+  {
+    "produtorId": 5,
+    "data": {
+      "serie": [25, 25, 20, 20, 10],
+      "labels": ["Banana", "Repolho", "Coentro", "Rabanete", "Limão"]
+    }
+  }
+]

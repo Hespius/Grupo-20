@@ -16,6 +16,7 @@ import {
   getCommodities,
 } from "../middleware/servicesProduto";
 import Navbar from "./navbar";
+import "./produtor.css";
 
 const data = [
   {
@@ -73,10 +74,10 @@ class Produtor extends Component {
   render() {
     const { commodities } = this.state;
     return (
-      <>
+      <div className="producer-container">
         <Navbar />
-        <div className="std-div">
-          <h1>Perfil do Produtor</h1>
+        <h1 className="producer-title">Perfil do Produtor</h1>
+        <div className="producer-search-container">
           <DataGrid
             dataSource={this.state.ofertas}
             onRowInserting={this.onInsertHandler}
@@ -109,7 +110,7 @@ class Produtor extends Component {
             </Editing>
           </DataGrid>
         </div>
-      </>
+      </div>
     );
   }
 }

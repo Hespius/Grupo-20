@@ -1,0 +1,15 @@
+.producer-container {
+    height: 100vh;
+    background-color: #effdef;
+  }
+  
+  .producer-title {
+    margin: 32px 0px;
+    margin-left: 10%;
+  }
+  
+  .producer-search-container {
+    width: 80%;
+    display: block;
+    margin: auto;
+  }
