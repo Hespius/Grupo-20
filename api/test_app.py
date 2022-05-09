@@ -56,6 +56,61 @@ def test_post_usuarios_cadastrar():
     x = json.loads(registro_usuario)
     response = client.post("usuarios/cadastrar", json=x)
 
-    print(response.json())
+    assert response.status_code == 200
+
+
+def test_post_usuarios_cadastrar_email_cadastrado():
+    registro_usuario = """{ 
+                "tipo": "produtor",
+                "nome": "novo",
+                "cpf_cnpj": "99988877766",
+                "telefone": "1122224444",
+                "estado": "SP",
+                "cidade": "Teste",
+                "complemento": "teste",
+                "cep": "12345678",
+                "logradouro": "teste",
+                "numero": "20",
+                "email": "consumidor1@teste.com.br",
+                "senha": "1234"
+    }"""
+
+    x = json.loads(registro_usuario)
+    response = client.post("usuarios/cadastrar", json=x)
+
+    assert response.status_code == 404
+
+
+def test_post_usuarios_login_correto():
+    login = """{
+        "email": "consumidor1@teste.com.br",
+        "senha": "senha"
+    }"""
+
+    x = json.loads(login)
+    response = client.post("usuarios/login", json=x)
+
+    assert response.status_code == 200
+
+
+def test_post_usuarios_login_incorreto():
+    login = """{
+        "email": "consumidor9090@teste.com.br",
+        "senha": "senha"
+    }"""
+
+    x = json.loads(login)
+    response = client.post("usuarios/login", json=x)
+
+    assert response.status_code == 404
+
+
+def test_post_produtos_cadastrar():
+    produtos = """{
+        "nome": "teste"
+    }"""
+
+    x = json.loads(produtos)
+    response = client.post("produtos/cadastrar", json=x)
 
     assert response.status_code == 200
