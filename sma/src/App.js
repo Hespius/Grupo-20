@@ -10,34 +10,10 @@ import Cadastro from "./components/cadastro";
 import Produtor from "./components/produtor";
 import Consumidor from "./components/consumidor";
 import Menu from "./components/menu";
-// import Compras from './components/compras'
+import Dashboard from "./components/dashboard";
 
 class App extends Component {
-  // state = {
-  // login: {
-  // email: '',
-  // senha: '' ,
-
-  // }
-
-  // }
-
-  // getUser = () =>{
-
-  // console.log(this.state)
-
-  // }
-
-  // componentDidMount (){
-  // const login = { email: 'aluno@ufabc.com.br' , senha: 'y'}
-  // this.setState ({
-  // login:login
-  // })
-
-  // }
-
   render() {
-    // const user = this.getUser();
     return (
       <BrowserRouter basename="/">
         {/* <Menu/> */}
@@ -46,6 +22,7 @@ class App extends Component {
           <Route exact path="/cadastro" element={<Cadastro />} />
           <Route exact path="/produtor" element={<Produtor />} />
           <Route exact path="/consumidor" element={<Consumidor />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
           {/* <Route exact path='/compras' element={<Compras/>} /> */}
         </Routes>
       </BrowserRouter>

@@ -1,0 +1,7 @@
+.charts-frame-1 {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}

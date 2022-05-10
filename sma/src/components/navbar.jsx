@@ -37,6 +37,14 @@ class Navbar extends Component {
     this.props.modificaNome(user.nome);
     this.props.modificaEmail(user.email);
     this.props.modificaId(user.id_usuario);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("id", user.id_usuario);
+  };
+
+  setEmail = (email, id) => {
+    console.log("ATUALIZANDO PROPS");
+    this.props.modificaEmail(email);
+    this.props.modificaId(id);
   };
 
   handleBlur = (e) => {
@@ -44,9 +52,9 @@ class Navbar extends Component {
     let newLogin = login;
 
     newLogin[e.target.id] = e.target.value;
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({ login: newLogin });
-    console.log(login);
+    // console.log(login);
   };
 
   handleSubmit = async (e) => {
@@ -54,7 +62,7 @@ class Navbar extends Component {
     const { login } = this.state;
     try {
       var response = await setLogin(login);
-      console.log(response);
+      //   console.log(response);
       this.loginRedirect(response);
     } catch (error) {
       alert("Erro ao logar: " + error.message);
@@ -63,7 +71,6 @@ class Navbar extends Component {
 
   loginRedirect = (response) => {
     if (response.status === 200) {
-      console.log("LOGIN realizado com sucesso");
       const { login } = this.state;
       this.setState({
         login: {
@@ -72,12 +79,8 @@ class Navbar extends Component {
         },
       });
       this.props.modificaAuth(true);
-      //   console.log("salvando estado");
       this.SetUser(response.data);
-      //   console.log("salvou estado");
-      //   console.log("=========this.state.login=========", this.state.login);
       if (response.data.tipo === "Produtor") {
-        // window.location.href = "/SMA-Handshake-Eng-Software-2022.1-/produtor";
         console.log("redirecionando produtor...");
         this.redirect = true;
         this.setState({
@@ -85,7 +88,6 @@ class Navbar extends Component {
           url: "/produtor",
         });
       } else {
-        // window.location.href = "/SMA-Handshake-Eng-Software-2022.1-/consumidor";
         console.log("redirecionando consumidor...");
         this.redirect = true;
         this.setState({
@@ -100,15 +102,30 @@ class Navbar extends Component {
 
   handleRegister = () => {
     window.location.href = "/cadastro";
-  }
+  };
 
   componentDidMount() {
-    if(this.props.isRegister) {
-      this.setState({
-        isRegister: true,
-      });
+    try {
+      console.log("localStorage email: " + localStorage.getItem("email"));
+
+      if (localStorage.getItem("email") !== null) {
+        this.props.modificaAuth(true);
+
+        this.setEmail(
+          localStorage.getItem("email"),
+          localStorage.getItem("id")
+        );
+      }
+
+      if (this.props.isRegister) {
+        this.setState({
+          isRegister: true,
+        });
+      }
+      this.mounted = true;
+    } catch (e) {
+      console.log("ERROR" + e.message);
     }
-    this.mounted = true;
   }
 
   componentWillUnmount() {
@@ -124,15 +141,18 @@ class Navbar extends Component {
     if (this.redirect && window.location.href !== "/produtor") {
       this.redirect = false;
       return <Navigate to={this.state.url} />;
-    } 
+    }
     return (
       <>
         <header>
           <div>
-            <h1 className="title-geral" onClick={() => {window.location.href = "/"}}>
-                <span className="navbar-title" >
-                  SMA Handshake
-                </span>
+            <h1
+              className="title-geral"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            >
+              <span className="navbar-title">SMA Handshake</span>
             </h1>
           </div>
           {!this.props.auth && !this.state.isRegister && (
@@ -150,10 +170,14 @@ class Navbar extends Component {
                     onBlur={this.handleBlur}
                   ></input>
                 </div>
-                <Button text="Entrar" type="submit" classType="secondary"/>
+                <Button text="Entrar" type="submit" classType="secondary" />
               </form>
               <span> | </span>
-              <Button text="Cadastrar-se" classType="dark" onClick={this.handleRegister} />
+              <Button
+                text="Cadastrar-se"
+                classType="dark"
+                onClick={this.handleRegister}
+              />
             </div>
           )}
           {this.props.auth && (

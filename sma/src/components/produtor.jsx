@@ -72,6 +72,7 @@ class Produtor extends Component {
   }
 
   render() {
+    console.log("produtorId(produtor.jsx): " + this.props.id);
     const { commodities } = this.state;
     return (
       <div className="producer-container">
