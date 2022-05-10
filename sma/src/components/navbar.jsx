@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { setLogin } from "../middleware/servicesCadastro";
 import { Navigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
+import "./navbar.css";
 
 // export function getUser() {
 //   const login = Navbar.getUser();
@@ -15,6 +15,7 @@ import {
   modificaNome,
   modificaAuth,
 } from "../../src/redux/actions/AutenticationActions";
+import Button from "./button";
 
 class Navbar extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class Navbar extends Component {
       },
       redirect: false,
       url: "",
+      isRegister: false,
     };
   }
 
@@ -46,10 +48,10 @@ class Navbar extends Component {
     this.setState({ login: newLogin });
     console.log(login);
   };
+
   handleSubmit = async (e) => {
     e.preventDefault();
     const { login } = this.state;
-    console.log("login", this.state.login);
     try {
       var response = await setLogin(login);
       console.log(response);
@@ -84,7 +86,7 @@ class Navbar extends Component {
         });
       } else {
         // window.location.href = "/SMA-Handshake-Eng-Software-2022.1-/consumidor";
-        console.log("redirecionando produtor...");
+        console.log("redirecionando consumidor...");
         this.redirect = true;
         this.setState({
           redirect: true,
@@ -96,7 +98,16 @@ class Navbar extends Component {
     }
   };
 
+  handleRegister = () => {
+    window.location.href = "/cadastro";
+  }
+
   componentDidMount() {
+    if(this.props.isRegister) {
+      this.setState({
+        isRegister: true,
+      });
+    }
     this.mounted = true;
   }
 
@@ -106,35 +117,43 @@ class Navbar extends Component {
 
   render() {
     // const auth = this.state.login.auth;
-    const { login } = this.state;
     // const { user } = useSelector((state) => console.log(state));
+    const { login } = this.state;
     const { nome, email, id } = this.props;
+
     if (this.redirect && window.location.href !== "/produtor") {
       this.redirect = false;
       return <Navigate to={this.state.url} />;
-    }
+    } 
     return (
       <>
         <header>
           <div>
-            <h1>
-              <a href="/">SMA Handshake</a>
+            <h1 className="title-geral" onClick={() => {window.location.href = "/"}}>
+                <span className="navbar-title" >
+                  SMA Handshake
+                </span>
             </h1>
           </div>
-          {!this.props.auth && (
+          {!this.props.auth && !this.state.isRegister && (
             <div className="login-div">
-              <form onSubmit={this.handleSubmit}>
-                <label>Usuário</label>
-                <input id="email" onBlur={this.handleBlur}></input>
-                <label>Senha</label>
-                <input
-                  id="senha"
-                  type="password"
-                  onBlur={this.handleBlur}
-                ></input>
-                <button>Entrar</button>
+              <form className="form-container" onSubmit={this.handleSubmit}>
+                <div className="field-container user-container">
+                  <label className="form-text">Usuário</label>
+                  <input id="email" onBlur={this.handleBlur}></input>
+                </div>
+                <div className="field-container password-container">
+                  <label className="form-text">Senha</label>
+                  <input
+                    id="senha"
+                    type="password"
+                    onBlur={this.handleBlur}
+                  ></input>
+                </div>
+                <Button text="Entrar" type="submit" classType="secondary"/>
               </form>
-              <a href="cadastro">Cadastrar-se</a>
+              <span> | </span>
+              <Button text="Cadastrar-se" classType="dark" onClick={this.handleRegister} />
             </div>
           )}
           {this.props.auth && (

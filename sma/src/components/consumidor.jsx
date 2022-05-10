@@ -31,6 +31,7 @@ import {
   getOfertas,
   setOrdem,
 } from "../middleware/servicesConsumidor";
+import "./consumidor.css";
 
 // const commoditiesOptions = { items: ['Milho','Soja','Trigo'], searchEnabled: true, value: '' };
 const statesOptions = {
@@ -179,11 +180,11 @@ class Consumidor extends Component {
     const { busca_dados, quantidade } = this.state.busca_dados;
 
     return (
-      <>
+      <div className="consumer-container">
         <Navbar />
-        <div>
-          <div className="std-div">
-            <h1>Perfil do Consumidor</h1>
+        <h1 className="consumer-title">Perfil do Consumidor</h1>
+        <div className="consumer-search-container">
+          <div className="">
             <form onSubmit={this.handleSubmit}>
               <FormStd
                 width={800}
@@ -207,44 +208,44 @@ class Consumidor extends Component {
               </FormStd>
             </form>
           </div>
-        </div>
-        <div className="std-div">
-          <DataGrid
-            dataSource={this.state.ofertas}
-            ref={(ref) => (this.dataGrid = ref)}
-            // defaultColumns={columns}
-            rowAlternationEnabled={true}
-            onSelectionChanged={this.handleSelectionChange}
-            onEditorPreparing={this.onEditorPreparing}
-            // onRowPrepared = {this.handleRowPrepared}
-            onRowUpdating={this.handleRowPrepared}
-          >
-            {/* <Editing mode='popup' allowUpdating={true} useIcons={true}  /> */}
-            <Paging enabled={false} />
-            <Selection mode="multiple" />
-            <Column dataField="usuario" />
-            <Column dataField="commodity" />
-            <Column dataField="data_disponivel" />
-            <Column dataField="quantidade" caption="Qtde disponível" />
-            <Column dataField="saldo" />
-            <Column dataField="preco" />
-            <Column dataField="comprar" allowEditing={true} visible={false} />
-            <Editing
-              mode="popup"
-              allowUpdating={true}
-              useIcons={true}
-              visible={false}
+          <div className="">
+            <DataGrid
+              dataSource={this.state.ofertas}
+              ref={(ref) => (this.dataGrid = ref)}
+              // defaultColumns={columns}
+              rowAlternationEnabled={true}
+              onSelectionChanged={this.handleSelectionChange}
+              onEditorPreparing={this.onEditorPreparing}
+              // onRowPrepared = {this.handleRowPrepared}
+              onRowUpdating={this.handleRowPrepared}
             >
-              <Popup title="Compra" showTitle={true} width={700} height={300} />
-            </Editing>
+              {/* <Editing mode='popup' allowUpdating={true} useIcons={true}  /> */}
+              <Paging enabled={false} />
+              <Selection mode="multiple" />
+              <Column dataField="usuario" />
+              <Column dataField="commodity" />
+              <Column dataField="data_disponivel" />
+              <Column dataField="quantidade" caption="Qtde disponível" />
+              <Column dataField="saldo" />
+              <Column dataField="preco" />
+              <Column dataField="comprar" allowEditing={true} visible={false} />
+              <Editing
+                mode="popup"
+                allowUpdating={true}
+                useIcons={true}
+                visible={false}
+              >
+                <Popup title="Compra" showTitle={true} width={700} height={300} />
+              </Editing>
 
-            {/* <Form>
-                            <SelectBox dataField= 'commodity'/>
-                            <Item dataField ='disponibilidade' />
-                            <Item dataField = 'quantidade' />
-                            <Item dataField = 'preco' />
-                        </Form>  */}
-          </DataGrid>
+              {/* <Form>
+                              <SelectBox dataField= 'commodity'/>
+                              <Item dataField ='disponibilidade' />
+                              <Item dataField = 'quantidade' />
+                              <Item dataField = 'preco' />
+                          </Form>  */}
+            </DataGrid>
+          </div>
         </div>
 
         {/* <StdPopup
@@ -280,7 +281,7 @@ class Consumidor extends Component {
                 
             
         </StdPopup> */}
-      </>
+      </div>
     );
   }
 }

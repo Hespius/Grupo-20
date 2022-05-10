@@ -1,0 +1,62 @@
+.btn {
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    text-align: center;
+    padding: 12px 24px;
+  }
+  
+  .btn-primary {
+    background-color: green;
+    border: 1px solid green;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: lightgreen;
+    border: 1px solid green;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #dedede;
+    color: #888888;
+    border: 1px solid transparent;
+    cursor: auto;
+  }
+  
+  .secondary {
+    border: 1px solid green;
+    background: white;
+  }
+  
+  .secondary p {
+    color: green;
+    font-size: 14px;
+  }
+  
+  .secondary:hover {
+    background: lightgreen;
+  }
+  
+  .secondary:hover p {
+    color: black;
+  }
+  
+  .dark {
+    border: 1px solid green;
+    background: lightgray;
+  }
+  
+  .dark p {
+    color: black;
+    font-size: 14px;
+  }
+  
+  .dark:hover {
+    background: gray;
+  }
+  
+  .dark:hover p {
+    color: white;
+  }
